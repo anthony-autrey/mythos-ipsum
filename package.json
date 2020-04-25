@@ -1,0 +1,17 @@
+{
+    "name": "mythos-ipsum",
+    "version": "1.0.1",
+    "description": "Generates random fantasy words, names, sentences, paragraphs, and even UUIDs.",
+    "main": "mythos-ipsum.js",
+    "files": [
+        "mythos-ipsum.js",
+        "types.d.ts"
+    ],
+    "scripts": {
+        "patch": "npm version patch && npm publish && git push --tags"
+    },
+    "author": "Anthony Autrey",
+    "license": "ISC",
+    "dependencies": {},
+    "devDependencies": {}
+}
