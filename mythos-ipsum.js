@@ -13,7 +13,7 @@ let consonants = {
       end: [
          { grapheme: `b`, weight: 100 },
          { grapheme: `bb`, weight: 5 },
-         { grapheme: `bs`, weight: 10 }, // postvocalic cluster
+         { grapheme: `bs`, weight: 70 }, // postvocalic cluster
          { grapheme: `bbs`, weight: 1 }, // postvocalic cluster
          { grapheme: `bz`, weight: 1 }, // postvocalic cluster
          { grapheme: `bbz`, weight: 1 } // postvocalic cluster
@@ -29,10 +29,10 @@ let consonants = {
       end: [
          { grapheme: `d`, weight: 20 },
          { grapheme: `dd`, weight: 5 },
-         { grapheme: `ed`, weight: 1 },
-         { grapheme: `ds`, weight: 1 }, // postvocalic cluster
+         { grapheme: `ed`, weight: 10 },
+         { grapheme: `ds`, weight: 10 }, // postvocalic cluster
          { grapheme: `dds`, weight: 1 }, // postvocalic cluster
-         { grapheme: `eds`, weight: 1 } // postvocalic cluster
+         { grapheme: `eds`, weight: 10 } // postvocalic cluster
       ]
    },
    f: {
@@ -55,13 +55,13 @@ let consonants = {
          { grapheme: `gh`, weight: 1 },
          { grapheme: `lf`, weight: 1 },
          { grapheme: `ft`, weight: 1 },
-         { grapheme: `fk`, weight: 1 }, // postvocalic cluster
-         { grapheme: `fs`, weight: 1 }, // postvocalic cluster
+         { grapheme: `fk`, weight: 5 }, // postvocalic cluster
+         { grapheme: `fs`, weight: 5 }, // postvocalic cluster
          { grapheme: `ffs`, weight: 1 }, // postvocalic cluster
          { grapheme: `phs`, weight: 1 }, // postvocalic cluster
          { grapheme: `ghs`, weight: 1 }, // postvocalic cluster
-         { grapheme: `lfs`, weight: 1 }, // postvocalic cluster
-         { grapheme: `ft`, weight: 1 } // postvocalic cluster
+         { grapheme: `lfs`, weight: 5 }, // postvocalic cluster
+         { grapheme: `ft`, weight: 5 } // postvocalic cluster
       ]
    },
    g: {
@@ -80,13 +80,13 @@ let consonants = {
          { grapheme: `gue`, weight: 1 }
       ],
       end: [
-         { grapheme: `g`, weight: 100 },
+         { grapheme: `g`, weight: 50 },
          { grapheme: `gg`, weight: 1 },
          { grapheme: `gue`, weight: 1 },
-         { grapheme: `ged`, weight: 1 }, // postvocalic cluster
+         { grapheme: `ged`, weight: 10 }, // postvocalic cluster
          { grapheme: `gued`, weight: 1 }, // postvocalic cluster
          { grapheme: `gged`, weight: 1 }, // postvocalic cluster
-         { grapheme: `gs`, weight: 1 }, // postvocalic cluster
+         { grapheme: `gs`, weight: 10 }, // postvocalic cluster
          { grapheme: `ggs`, weight: 1 }, // postvocalic cluster
          { grapheme: `gues`, weight: 1 }, // postvocalic cluster
          { grapheme: `gz`, weight: 1 }, // postvocalic cluster
@@ -123,16 +123,16 @@ let consonants = {
          { grapheme: `j`, weight: 1 },
          { grapheme: `ge`, weight: 10 },
          { grapheme: `dge`, weight: 10 },
-         { grapheme: `ged`, weight: 1 }, // postvocalic cluster
-         { grapheme: `dged`, weight: 1 }, // postvocalic cluster
-         { grapheme: `ges`, weight: 1 }, // postvocalic cluster
-         { grapheme: `dges`, weight: 1 } // postvocalic cluster
+         { grapheme: `ged`, weight: 10 }, // postvocalic cluster
+         { grapheme: `dged`, weight: 5 }, // postvocalic cluster
+         { grapheme: `ges`, weight: 5 }, // postvocalic cluster
+         { grapheme: `dges`, weight: 5 } // postvocalic cluster
       ]
    },
    k: {
       weight: 8,
       beginning: [
-         { grapheme: `c`, weight: 50 },
+         { grapheme: `c`, weight: 20 },
          { grapheme: `k`, weight: 10 },
          { grapheme: `qu`, weight: 1 },
          { grapheme: `sc`, weight: 5 }, // prevocalic cluster
@@ -142,7 +142,7 @@ let consonants = {
       middle: [
          { grapheme: `c`, weight: 50 },
          { grapheme: `k`, weight: 10 },
-         { grapheme: `ch`, weight: 2 },
+         { grapheme: `ch`, weight: 5 },
          { grapheme: `cc`, weight: 3 },
          { grapheme: `lk`, weight: 1 },
          { grapheme: `qu`, weight: 1 },
@@ -168,7 +168,7 @@ let consonants = {
    l: {
       weight: 20,
       beginning: [
-         { grapheme: `l`, weight: 100 },
+         { grapheme: `l`, weight: 50 },
          { grapheme: `ll`, weight: 1 },
          { grapheme: `sl`, weight: 10 }, // prevocalic cluster
          { grapheme: `kl`, weight: 1 }, // prevocalic cluster
@@ -195,38 +195,38 @@ let consonants = {
          { grapheme: `l`, weight: 100 },
          { grapheme: `le`, weight: 100 },
          { grapheme: `ll`, weight: 1 },
-         { grapheme: `sle`, weight: 1 }, // prevocalic cluster
-         { grapheme: `lb`, weight: 1 }, // postvocalic cluster
-         { grapheme: `ld`, weight: 1 }, // postvocalic cluster
-         { grapheme: `lf`, weight: 1 }, // postvocalic cluster
-         { grapheme: `lg`, weight: 1 }, // postvocalic cluster
-         { grapheme: `lgs`, weight: 1 }, // postvocalic cluster
+         { grapheme: `sle`, weight: 5 }, // prevocalic cluster
+         { grapheme: `lb`, weight: 5 }, // postvocalic cluster
+         { grapheme: `ld`, weight: 5 }, // postvocalic cluster
+         { grapheme: `lf`, weight: 5 }, // postvocalic cluster
+         { grapheme: `lg`, weight: 5 }, // postvocalic cluster
+         { grapheme: `lgs`, weight: 3 }, // postvocalic cluster
          { grapheme: `lgue`, weight: 1 }, // postvocalic cluster
          { grapheme: `lged`, weight: 1 }, // postvocalic cluster
-         { grapheme: `lge`, weight: 1 }, // postvocalic cluster
+         { grapheme: `lge`, weight: 3 }, // postvocalic cluster
          { grapheme: `ldge`, weight: 1 }, // postvocalic cluster
          { grapheme: `lgg`, weight: 1 }, // postvocalic cluster
          { grapheme: `lged`, weight: 1 }, // postvocalic cluster
          { grapheme: `ldged`, weight: 1 }, // postvocalic cluster
          { grapheme: `ldges`, weight: 1 }, // postvocalic cluster
          { grapheme: `lges`, weight: 1 }, // postvocalic cluster
-         { grapheme: `lk`, weight: 1 }, // postvocalic cluster
-         { grapheme: `lch`, weight: 1 }, // postvocalic cluster
+         { grapheme: `lk`, weight: 3 }, // postvocalic cluster
+         { grapheme: `lch`, weight: 3 }, // postvocalic cluster
          { grapheme: `lque`, weight: 1 }, // postvocalic cluster
          { grapheme: `lck`, weight: 1 }, // postvocalic cluster
          { grapheme: `lx`, weight: 1 }, // postvocalic cluster
          { grapheme: `lsc`, weight: 1 }, // postvocalic cluster
          { grapheme: `lsk`, weight: 1 }, // postvocalic cluster
          { grapheme: `lsque`, weight: 1 }, // postvocalic cluster
-         { grapheme: `lm`, weight: 1 }, // postvocalic cluster
-         { grapheme: `lmn`, weight: 1 }, // postvocalic cluster
-         { grapheme: `ln`, weight: 1 }, // postvocalic cluster
-         { grapheme: `lp`, weight: 1 }, // postvocalic cluster
-         { grapheme: `ls`, weight: 1 }, // postvocalic cluster
-         { grapheme: `lst`, weight: 1 }, // postvocalic cluster
-         { grapheme: `lce`, weight: 1 }, // postvocalic cluster
-         { grapheme: `lse`, weight: 1 }, // postvocalic cluster
-         { grapheme: `lt`, weight: 1 }, // postvocalic cluster
+         { grapheme: `lm`, weight: 3 }, // postvocalic cluster
+         { grapheme: `lmn`, weight: 3 }, // postvocalic cluster
+         { grapheme: `ln`, weight: 3 }, // postvocalic cluster
+         { grapheme: `lp`, weight: 3 }, // postvocalic cluster
+         { grapheme: `ls`, weight: 3 }, // postvocalic cluster
+         { grapheme: `lst`, weight: 3 }, // postvocalic cluster
+         { grapheme: `lce`, weight: 3 }, // postvocalic cluster
+         { grapheme: `lse`, weight: 3 }, // postvocalic cluster
+         { grapheme: `lt`, weight: 3 }, // postvocalic cluster
          { grapheme: `lst`, weight: 1 }, // postvocalic cluster
          { grapheme: `lssed`, weight: 1 }, // postvocalic cluster
          { grapheme: `lve`, weight: 1 }, // postvocalic cluster
@@ -235,8 +235,8 @@ let consonants = {
          { grapheme: `lch`, weight: 1 }, // postvocalic cluster
          { grapheme: `ltch`, weight: 1 }, // postvocalic cluster
          { grapheme: `lsh`, weight: 1 }, // postvocalic cluster
-         { grapheme: `lche`, weight: 1 }, // postvocalic cluster
-         { grapheme: `lth`, weight: 1 } // postvocalic cluster
+         { grapheme: `lche`, weight: 3 }, // postvocalic cluster
+         { grapheme: `lth`, weight: 3 } // postvocalic cluster
       ]
    },
    m: {
@@ -287,24 +287,24 @@ let consonants = {
          { grapheme: `sn`, weight: 1 } // prevocalic cluster
       ],
       end: [
-         { grapheme: `n`, weight: 10 },
+         { grapheme: `n`, weight: 50 },
          { grapheme: `nn`, weight: 1 },
          { grapheme: `gn`, weight: 1 },
-         { grapheme: `nd`, weight: 1 }, // postvocalic cluster
+         { grapheme: `nd`, weight: 10 }, // postvocalic cluster
          { grapheme: `nds`, weight: 1 }, // postvocalic cluster
          { grapheme: `ned`, weight: 1 }, // postvocalic cluster
          { grapheme: `nk`, weight: 1 }, // postvocalic cluster
          { grapheme: `nque`, weight: 1 }, // postvocalic cluster
-         { grapheme: `ns`, weight: 1 }, // postvocalic cluster
+         { grapheme: `ns`, weight: 5 }, // postvocalic cluster
          { grapheme: `nns`, weight: 1 }, // postvocalic cluster
          { grapheme: `gns`, weight: 1 }, // postvocalic cluster
-         { grapheme: `nks`, weight: 1 }, // postvocalic cluster
+         { grapheme: `nks`, weight: 5 }, // postvocalic cluster
          { grapheme: `nques`, weight: 1 }, // postvocalic cluster
-         { grapheme: `nt`, weight: 1 }, // postvocalic cluster
-         { grapheme: `nts`, weight: 1 }, // postvocalic cluster
-         { grapheme: `nch`, weight: 1 }, // postvocalic cluster
+         { grapheme: `nt`, weight: 5 }, // postvocalic cluster
+         { grapheme: `nts`, weight: 3 }, // postvocalic cluster
+         { grapheme: `nch`, weight: 3 }, // postvocalic cluster
          { grapheme: `ntch`, weight: 1 }, // postvocalic cluster
-         { grapheme: `nth`, weight: 1 }, // postvocalic cluster
+         { grapheme: `nth`, weight: 3 }, // postvocalic cluster
          { grapheme: `nths`, weight: 1 } // postvocalic cluster
       ]
    },
@@ -322,25 +322,25 @@ let consonants = {
       end: [
          { grapheme: `p`, weight: 10 },
          { grapheme: `pp`, weight: 1 },
-         { grapheme: `sp`, weight: 1 }, // prevocalic cluster
-         { grapheme: `ps`, weight: 1 }, // postvocalic cluster
-         { grapheme: `pt`, weight: 1 } // postvocalic cluster
+         { grapheme: `sp`, weight: 5 }, // prevocalic cluster
+         { grapheme: `ps`, weight: 5 }, // postvocalic cluster
+         { grapheme: `pt`, weight: 5 } // postvocalic cluster
       ]
    },
    r: {
       weight: 20,
       beginning: [
-         { grapheme: `r`, weight: 100 },
+         { grapheme: `r`, weight: 50 },
          { grapheme: `wr`, weight: 1 },
          { grapheme: `rh`, weight: 3 },
-         { grapheme: `tr`, weight: 5 }, // prevocalic cluster,
-         { grapheme: `dr`, weight: 5 }, // prevocalic cluster,
-         { grapheme: `fr`, weight: 5 }, // prevocalic cluster,
-         { grapheme: `br`, weight: 5 }, // prevocalic cluster,
+         { grapheme: `tr`, weight: 10 }, // prevocalic cluster,
+         { grapheme: `dr`, weight: 10 }, // prevocalic cluster,
+         { grapheme: `fr`, weight: 10 }, // prevocalic cluster,
+         { grapheme: `br`, weight: 10 }, // prevocalic cluster,
          { grapheme: `gr`, weight: 5 }, // prevocalic cluster,
          { grapheme: `kr`, weight: 2 }, // prevocalic cluster,
          { grapheme: `cr`, weight: 5 }, // prevocalic cluster,
-         { grapheme: `chr`, weight: 2 }, // prevocalic cluster,
+         { grapheme: `chr`, weight: 5 }, // prevocalic cluster,
          { grapheme: `pr`, weight: 5 } // prevocalic cluster
       ],
       middle: [
@@ -359,21 +359,21 @@ let consonants = {
          { grapheme: `pr`, weight: 5 } // prevocalic cluster
       ],
       end: [
-         { grapheme: `r`, weight: 100 },
+         { grapheme: `r`, weight: 60 },
          { grapheme: `rr`, weight: 2 },
          { grapheme: `rh`, weight: 1 },
          { grapheme: `rb`, weight: 5 }, // postvocalic cluster
          { grapheme: `rbs`, weight: 5 }, // postvocalic cluster
          { grapheme: `rd`, weight: 5 }, // postvocalic cluster
-         { grapheme: `red`, weight: 1 }, // postvocalic cluster
-         { grapheme: `rds`, weight: 1 }, // postvocalic cluster
+         { grapheme: `red`, weight: 5 }, // postvocalic cluster
+         { grapheme: `rds`, weight: 5 }, // postvocalic cluster
          { grapheme: `rf`, weight: 2 }, // postvocalic cluster
          { grapheme: `rph`, weight: 1 }, // postvocalic cluster
-         { grapheme: `rlf`, weight: 1 }, // postvocalic cluster
+         { grapheme: `rlf`, weight: 3 }, // postvocalic cluster
          { grapheme: `rlph`, weight: 1 }, // postvocalic cluster
-         { grapheme: `rft`, weight: 1 }, // postvocalic cluster
+         { grapheme: `rft`, weight: 3 }, // postvocalic cluster
          { grapheme: `rfk`, weight: 1 }, // postvocalic cluster
-         { grapheme: `rfs`, weight: 1 }, // postvocalic cluster
+         { grapheme: `rfs`, weight: 3 }, // postvocalic cluster
          { grapheme: `rphs`, weight: 1 }, // postvocalic cluster
          { grapheme: `rg`, weight: 5 }, // postvocalic cluster
          { grapheme: `rgue`, weight: 1 }, // postvocalic cluster
@@ -497,10 +497,9 @@ let consonants = {
          { grapheme: `st`, weight: 20 },
          { grapheme: `ce`, weight: 10 },
          { grapheme: `se`, weight: 10 },
-         { grapheme: `sed`, weight: 1 }, // postvocalic cluster
+         { grapheme: `sed`, weight: 5 }, // postvocalic cluster
          { grapheme: `ssed`, weight: 1 }, // postvocalic cluster
-         { grapheme: `ced`, weight: 1 }, // postvocalic cluster
-         { grapheme: `ced`, weight: 1 }, // postvocalic cluster
+         { grapheme: `ced`, weight: 5 }, // postvocalic cluster
          { grapheme: `sk`, weight: 1 }, // postvocalic cluster
          { grapheme: `ssk`, weight: 1 }, // postvocalic cluster
          { grapheme: `sp`, weight: 5 }, // postvocalic cluster
@@ -520,11 +519,11 @@ let consonants = {
          { grapheme: `st`, weight: 50 } // prevocalic cluster
       ],
       end: [
-         { grapheme: `t`, weight: 50 },
+         { grapheme: `t`, weight: 20 },
          { grapheme: `tt`, weight: 1 },
-         { grapheme: `ed`, weight: 20 },
-         { grapheme: `st`, weight: 20 }, // prevocalic cluster
-         { grapheme: `ssed`, weight: 1 } // prevocalic cluster
+         { grapheme: `ed`, weight: 10 },
+         { grapheme: `st`, weight: 10 }, // prevocalic cluster
+         { grapheme: `ssed`, weight: 5 } // prevocalic cluster
       ]
    },
    v: {
@@ -543,12 +542,12 @@ let consonants = {
    w: {
       weight: 3,
       beginning: [
-         { grapheme: `w`, weight: 100 },
+         { grapheme: `w`, weight: 30 },
          { grapheme: `wh`, weight: 10 },
          { grapheme: `ou`, weight: 1 },
-         { grapheme: `sw`, weight: 5 }, // prevocalic cluster
+         { grapheme: `sw`, weight: 10 }, // prevocalic cluster
          { grapheme: `dw`, weight: 5 }, // prevocalic cluster
-         { grapheme: `tw`, weight: 5 } // prevocalic cluster
+         { grapheme: `tw`, weight: 15 } // prevocalic cluster
       ],
       middle: [
          { grapheme: `w`, weight: 100 },
@@ -573,7 +572,7 @@ let consonants = {
          { grapheme: `x`, weight: 1 }
       ],
       end: [
-         { grapheme: `z`, weight: 1 },
+         { grapheme: `z`, weight: 10 },
          { grapheme: `zz`, weight: 1 },
          { grapheme: `ze`, weight: 50 }
       ]
