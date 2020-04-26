@@ -1,6 +1,6 @@
 {
     "name": "mythos-ipsum",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Generates random fantasy words, names, sentences, paragraphs, and even UUIDs.",
     "main": "mythos-ipsum.js",
     "files": [
