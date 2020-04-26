@@ -1243,9 +1243,9 @@ function getRandomName(lengthModifier) {
    return capitalizeWord(getRandomWord(lengthModifier));
 }
 
-function getRandomUUID(wordLength = 5) {
+function getRandomUUID(wordLength = 1) {
    let uuid = ``;
-   for (let i = 0; i < wordLength; i++) uuid += getRandomName(3) + `-`;
+   for (let i = 0; i < wordLength; i++) uuid += getRandomWord(15) + ``;
    return uuid.slice(0, uuid.length - 1);
 }
 
