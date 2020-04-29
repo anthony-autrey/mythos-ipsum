@@ -1122,7 +1122,7 @@ let vowels = {
       ]
    },
    el: {
-      weight: 7,
+      weight: 0,
       beginning: [{ grapheme: `el`, weight: 1 }],
       middle: [{ grapheme: `el`, weight: 5 }],
       end: [
@@ -1131,7 +1131,7 @@ let vowels = {
       ]
    },
    apostrophe: {
-      weight: 1,
+      weight: 3,
       beginning: [{ grapheme: ``, weight: 1 }],
       middle: [{ grapheme: `'`, weight: 1 }],
       end: [{ grapheme: ``, weight: 1 }]
@@ -1244,7 +1244,7 @@ function getRandomName(lengthModifier) {
 
 function getRandomUUID(wordLength = 5) {
    let uuid = ``;
-   for (let i = 0; i < wordLength; i++) uuid += getRandomName(3) + `-`;
+   for (let i = 0; i < wordLength; i++) uuid += getRandomWord(getRandomInt(0,2)) + `-`;
    return uuid.slice(0, uuid.length - 1);
 }
 
