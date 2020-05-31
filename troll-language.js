@@ -634,16 +634,16 @@ let consonants = {
 
 let vowels = {
    a: {
-      weight: 0,
+      weight: 3,
       beginning: [
          { grapheme: `a`, weight: 10 },
-         { grapheme: `ai`, weight: 1 },
-         { grapheme: `au`, weight: 1 }
+         // { grapheme: `ai`, weight: 1 },
+         // { grapheme: `au`, weight: 1 }
       ],
       middle: [
          { grapheme: `a`, weight: 10 },
-         { grapheme: `ai`, weight: 1 },
-         { grapheme: `au`, weight: 1 }
+         // { grapheme: `ai`, weight: 1 },
+         // { grapheme: `au`, weight: 1 }
       ],
       end: [{ grapheme: ``, weight: 1 }]
    },
@@ -684,77 +684,77 @@ let vowels = {
       ]
    },
    e: {
-      weight: 0,
+      weight: 3,
       beginning: [
          { grapheme: `e`, weight: 410 },
-         { grapheme: `ie`, weight: 1 },
-         { grapheme: `ae`, weight: 1 },
+         // { grapheme: `ie`, weight: 1 },
+         // { grapheme: `ae`, weight: 1 },
          { grapheme: `eh`, weight: 1 }
       ],
       middle: [
          { grapheme: `e`, weight: 410 },
-         { grapheme: `ea`, weight: 1 },
-         { grapheme: `u`, weight: 1 },
-         { grapheme: `ie`, weight: 1 },
-         { grapheme: `ai`, weight: 1 },
-         { grapheme: `a`, weight: 1 },
-         { grapheme: `eo`, weight: 1 },
-         { grapheme: `ae`, weight: 1 },
+         // { grapheme: `ea`, weight: 1 },
+         // { grapheme: `u`, weight: 1 },
+         // { grapheme: `ie`, weight: 1 },
+         // { grapheme: `ai`, weight: 1 },
+         // { grapheme: `a`, weight: 1 },
+         // { grapheme: `eo`, weight: 1 },
+         // { grapheme: `ae`, weight: 1 },
          { grapheme: `eh`, weight: 1 }
       ],
       end: [
-         { grapheme: `ae`, weight: 10 },
+         // { grapheme: `ae`, weight: 10 },
          { grapheme: `eh`, weight: 1 }
       ]
    },
    ee: {
-      weight: 0,
+      weight: 3,
       beginning: [
-         { grapheme: `e`, weight: 100 },
-         { grapheme: `ea`, weight: 10 },
-         { grapheme: `y`, weight: 1 },
-         { grapheme: `ie`, weight: 1 },
+         // { grapheme: `e`, weight: 100 },
+         // { grapheme: `ea`, weight: 10 },
+         // { grapheme: `y`, weight: 1 },
+         // { grapheme: `ie`, weight: 1 },
          { grapheme: `i`, weight: 1 },
-         { grapheme: `ei`, weight: 1 }
+         // { grapheme: `ei`, weight: 1 }
       ],
       middle: [
-         { grapheme: `e`, weight: 100 },
-         { grapheme: `ee`, weight: 20 },
-         { grapheme: `ea`, weight: 1 },
-         { grapheme: `y`, weight: 1 },
-         { grapheme: `ey`, weight: 1 },
-         { grapheme: `oe`, weight: 1 },
-         { grapheme: `ie`, weight: 1 },
+         // { grapheme: `e`, weight: 100 },
+         // { grapheme: `ee`, weight: 20 },
+         // { grapheme: `ea`, weight: 1 },
+         // { grapheme: `y`, weight: 1 },
+         // { grapheme: `ey`, weight: 1 },
+         // { grapheme: `oe`, weight: 1 },
+         // { grapheme: `ie`, weight: 1 },
          { grapheme: `i`, weight: 1 },
-         { grapheme: `ei`, weight: 1 },
-         { grapheme: `eo`, weight: 1 },
-         { grapheme: `ay`, weight: 1 }
+         // { grapheme: `ei`, weight: 1 },
+         // { grapheme: `eo`, weight: 1 },
+         // { grapheme: `ay`, weight: 1 }
       ],
       end: [
-         { grapheme: `ee`, weight: 1 },
-         { grapheme: `ea`, weight: 10 },
-         { grapheme: `y`, weight: 100 },
-         { grapheme: `ey`, weight: 1 },
-         { grapheme: `ie`, weight: 10 },
-         { grapheme: `i`, weight: 100 },
-         { grapheme: `ei`, weight: 1 }
+         // { grapheme: `ee`, weight: 1 },
+         // { grapheme: `ea`, weight: 10 },
+         // { grapheme: `y`, weight: 100 },
+         // { grapheme: `ey`, weight: 1 },
+         // { grapheme: `ie`, weight: 10 },
+         { grapheme: `i`, weight: 1 },
+         // { grapheme: `ei`, weight: 1 }
       ]
    },
    i: {
-      weight: 0,
+      weight: 5,
       beginning: [{ grapheme: `i`, weight: 1 }],
       middle: [
          { grapheme: `i`, weight: 100 },
          { grapheme: `e`, weight: 1 },
          { grapheme: `o`, weight: 1 },
          { grapheme: `u`, weight: 1 },
-         { grapheme: `ui`, weight: 1 },
-         { grapheme: `y`, weight: 1 },
-         { grapheme: `ie`, weight: 1 }
+         // { grapheme: `ui`, weight: 1 },
+         // { grapheme: `y`, weight: 1 },
+         // { grapheme: `ie`, weight: 1 }
       ],
       end: [
          { grapheme: `e`, weight: 1 },
-         { grapheme: `ie`, weight: 10 }
+         // { grapheme: `ie`, weight: 10 }
       ]
    },
    eye: {
