@@ -1296,7 +1296,7 @@ function getRandomWordWithBrokenStuff(lengthModifier = 0) {
 }
 
 function getRandomWord(lengthModifier = 0) {
-   let regex = /^.{1}\'.{1}$/
+   let regex = /^.{1,2}\'.{1}$/
    let word = '';
    while (!word || word.match(regex)) {
       word = getRandomWordWithBrokenStuff(lengthModifier)
