@@ -65,7 +65,7 @@ let consonants = {
       ]
    },
    g: {
-      weight: 5,
+      weight: 15,
       beginning: [
          { grapheme: `g`, weight: 100 },
          { grapheme: `gh`, weight: 5 },
@@ -169,7 +169,7 @@ let consonants = {
       weight: 20,
       beginning: [
          { grapheme: `l`, weight: 50 },
-         { grapheme: `ll`, weight: 1 },
+         { grapheme: `ll`, weight: 20 },
          { grapheme: `sl`, weight: 10 }, // prevocalic cluster
          { grapheme: `kl`, weight: 1 }, // prevocalic cluster
          { grapheme: `cl`, weight: 20 }, // prevocalic cluster
@@ -181,7 +181,7 @@ let consonants = {
       ],
       middle: [
          { grapheme: `l`, weight: 10 },
-         { grapheme: `ll`, weight: 1 },
+         { grapheme: `ll`, weight: 2 },
          { grapheme: `sl`, weight: 1 }, // prevocalic cluster
          { grapheme: `kl`, weight: 1 }, // prevocalic cluster
          { grapheme: `cl`, weight: 1 }, // prevocalic cluster
@@ -194,7 +194,7 @@ let consonants = {
       end: [
          { grapheme: `l`, weight: 100 },
          { grapheme: `le`, weight: 100 },
-         { grapheme: `ll`, weight: 1 },
+         { grapheme: `ll`, weight: 30 },
          { grapheme: `sle`, weight: 5 }, // prevocalic cluster
          { grapheme: `lb`, weight: 5 }, // postvocalic cluster
          { grapheme: `ld`, weight: 5 }, // postvocalic cluster
@@ -1312,7 +1312,7 @@ function getRandomWord(lengthModifier = 0) {
 
 function getWordLength() {
    let rand = Math.round(Math.random() * 10);
-   let trans = Math.pow(rand - 4.8, 3) * 0.01 + 1.5;
+   let trans = Math.pow(rand - 4.8, 3) * 0.01 + 1.25;
    let rounded = Math.round(trans);
 
    return rounded;
