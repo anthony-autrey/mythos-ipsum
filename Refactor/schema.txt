@@ -1,0 +1,16 @@
+
+Language:
+    name: string
+    description: string
+    owner: string
+    likeCount: number
+    reports: number
+    graphemes: Grapheme[]
+
+Grapheme:
+    characters: string
+    isVowel: boolean
+    beginningWeight: number
+    middleWeight: number
+    endWeight: number
+

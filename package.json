@@ -12,6 +12,8 @@
     },
     "author": "Anthony Autrey",
     "license": "ISC",
-    "dependencies": {},
+    "dependencies": {
+        "typescript": "^4.1.5"
+    },
     "devDependencies": {}
 }
