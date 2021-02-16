@@ -6,7 +6,7 @@ let inputText = `
     My name is Tony, and my wife's name is tara.
 `;
 
-console.log(Proof.getTranslation("english", inputText));
+console.log(Proof.getTranslation("spanish", inputText));
 
 // for (let i = 0; i < 10; i++) {
 //   console.log(Proof.getFirstName() + " " + Proof.getLastName());

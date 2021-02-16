@@ -8,6 +8,7 @@
         "types.d.ts"
     ],
     "scripts": {
+        "start": "nodemon --exec ts-node Refactor/main.ts",
         "patch": "npm version patch && npm publish && git push --tags"
     },
     "author": "Anthony Autrey",
@@ -16,5 +17,7 @@
         "seedrandom": "^3.0.5",
         "typescript": "^4.1.5"
     },
-    "devDependencies": {}
+    "devDependencies": {
+        "nodemon": "^2.0.7"
+    }
 }
