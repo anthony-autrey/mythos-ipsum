@@ -1,120 +1,188 @@
-import { Grapheme, syllableType } from './interfaces';
-import { Utility } from './utility';
-import { Human } from './languageConfigs/human';
+import { Grapheme, syllableType } from "./interfaces";
+import { Utility } from "./utility";
+import { Human } from "./languageConfigs/human";
 
 export class Proof {
+  // Words, Names //////////////////////////////////////////////////////////////////////////////////////////////////
+  public static getTranslation(sourceLanguage: string, inputText: string) {
+    let array = inputText.split(/[^a-zA-Z]/);
+    let uniqueArray = Array.from(new Set(array)).filter((word) => word);
+    let translationMap: Map<string, string> = new Map();
 
-    // Words, Names //////////////////////////////////////////////////////////////////////////////////////////////////
+    let firstCharacterIsUppercase = (string: string) => {
+      let firstCharacter = string[0];
+      return firstCharacter.toUpperCase() === firstCharacter;
+    };
+    let getCapitalized = (string: string) => {
+      let firstCharacter = string[0].toUpperCase();
+      return firstCharacter + string.substr(1);
+    };
 
-    public static getWord() {
-        let length = Utility.getRandomInt(Human.wordLength.min, Human.wordLength.max);
-        return this.getSyllables(length);
+    uniqueArray.forEach((word) => {
+      let seed = (word + sourceLanguage).toLowerCase();
+      translationMap.set(word, Proof.getWord(seed));
+    });
+
+    translationMap.forEach((value, key) => {
+      let regex = new RegExp(key, "g");
+      let replaceValue = value;
+      if (firstCharacterIsUppercase(key)) value = getCapitalized(value);
+
+      inputText = inputText.replace(regex, value);
+    });
+
+    return inputText;
+  }
+
+  // Words, Names //////////////////////////////////////////////////////////////////////////////////////////////////
+
+  public static getWord(seed?: string) {
+    let rng = Utility.getSeededRng(seed);
+    let length = Utility.getRandomInt(
+      Human.wordLength.min,
+      Human.wordLength.max,
+      rng
+    );
+    return this.getSyllables(length, rng);
+  }
+
+  public static getFirstName(seed?: string) {
+    let rng = Utility.getSeededRng(seed);
+
+    let length = Utility.getRandomInt(
+      Human.firstNameLength.min,
+      Human.firstNameLength.max,
+      rng
+    );
+    return this.getSyllables(length, rng);
+  }
+
+  public static getLastName(seed?: string) {
+    let rng = Utility.getSeededRng(seed);
+
+    let length = Utility.getRandomInt(
+      Human.lastNameLength.min,
+      Human.lastNameLength.max,
+      rng
+    );
+    return this.getSyllables(length, rng);
+  }
+
+  // Syllables //////////////////////////////////////////////////////////////////////////////////////////////////
+
+  private static getSyllables(syllableCount: number, rng?: Function) {
+    let syllables = "";
+
+    for (let i = 0; i < syllableCount; i++) {
+      let type = this.getSyllableType(i, syllableCount);
+      let syllable = this.getSyllable(type, rng);
+
+      syllables += syllable;
     }
 
-    public static getFirstName() {
-        let length = Utility.getRandomInt(Human.firstNameLength.min, Human.firstNameLength.max);
-        return this.getSyllables(length);
+    return syllables;
+  }
+
+  private static getSyllable(type: syllableType, rng?: Function) {
+    switch (type) {
+      case syllableType.first:
+        return this.getFirstSyllable(rng);
+      case syllableType.middle:
+        return this.getMiddleSyllable(rng);
+      case syllableType.last:
+        return this.getLastSyllable(rng);
     }
+  }
 
-    public static getLastName() {
-        let length = Utility.getRandomInt(Human.lastNameLength.min, Human.lastNameLength.max);
-        return this.getSyllables(length);
+  private static getFirstSyllable(rng?: Function) {
+    let startWithVowel = rng() < Human.startWithVowelProbability;
+    const useConsonantSuffix = rng() < Human.useConsonantSuffixProbability;
+
+    let syllable = "";
+    if (!startWithVowel)
+      syllable += this.getRandomGrapheme(syllableType.first, false, rng);
+    syllable += this.getRandomGrapheme(syllableType.first, true, rng);
+    if (useConsonantSuffix)
+      syllable += this.getRandomGrapheme(syllableType.first, false, rng);
+
+    return syllable;
+  }
+
+  private static getMiddleSyllable(rng?: Function) {
+    const useConsonantPrefix = rng() < Human.useConsonantPrefixProbability;
+    const useConsonantSuffix = rng() < Human.useConsonantSuffixProbability;
+
+    let syllable = "";
+    if (useConsonantPrefix)
+      syllable += this.getRandomGrapheme(syllableType.middle, false, rng);
+    syllable += this.getRandomGrapheme(syllableType.middle, true, rng);
+    if (useConsonantSuffix)
+      syllable += this.getRandomGrapheme(syllableType.middle, false, rng);
+
+    return syllable;
+  }
+
+  private static getLastSyllable(rng?: Function) {
+    const useConsonantPrefix = rng() < Human.useConsonantPrefixProbability;
+    let endWithVowel = rng() < Human.endWithVowelProbability;
+
+    let syllable = "";
+    if (useConsonantPrefix)
+      syllable += this.getRandomGrapheme(syllableType.last, false, rng);
+    syllable += this.getRandomGrapheme(syllableType.last, true, rng);
+    if (!endWithVowel)
+      syllable += this.getRandomGrapheme(syllableType.last, false, rng);
+
+    return syllable;
+  }
+
+  private static getSyllableType(
+    index: number,
+    totalLength: number
+  ): syllableType {
+    switch (index) {
+      case 0:
+        return syllableType.first;
+      case totalLength - 1:
+        return syllableType.last;
+      default:
+        return syllableType.middle;
     }
+  }
 
-    // Syllables //////////////////////////////////////////////////////////////////////////////////////////////////
+  // Graphemes //////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private static getSyllables(syllableCount: number) {
-        let syllables = '';
+  private static getRandomGrapheme(
+    type: syllableType,
+    vowel: boolean = true,
+    rng?: Function
+  ) {
+    let grapheme = Human.graphemes.filter((grapheme) => {
+      return grapheme.isVowel == vowel;
+    });
 
-        for (let i = 0; i < syllableCount; i++) {
-            let type = this.getSyllableType(i, syllableCount);
-            let syllable = this.getSyllable(type);
+    let optionsArray = grapheme.reduce((accumulator, grapheme) => {
+      let weight = this.getWeight(type, grapheme);
+      for (let i = 0; i < weight; i++) {
+        accumulator.push(grapheme.characters);
+      }
+      return accumulator;
+    }, []);
 
-            syllables += syllable;
-        }
+    let index = Utility.getRandomInt(0, optionsArray.length - 1, rng);
+    let randomGrapheme = optionsArray[index];
 
-        return syllables;
+    return randomGrapheme;
+  }
+
+  private static getWeight(type: syllableType, grapheme: Grapheme) {
+    switch (type) {
+      case syllableType.first:
+        return grapheme.beginningWeight;
+      case syllableType.middle:
+        return grapheme.middleWeight;
+      case syllableType.last:
+        return grapheme.endingWeight;
     }
-
-    private static getSyllable(type: syllableType) {
-        switch (type) {
-            case syllableType.first: return this.getFirstSyllable();
-            case syllableType.middle: return this.getMiddleSyllable();
-            case syllableType.last: return this.getLastSyllable();
-        }
-    }
-
-    private static getFirstSyllable() {
-        let startWithVowel = Math.random() < Human.startWithVowelProbability;
-        const useConsonantSuffix = Math.random() < Human.useConsonantSuffixProbability;
-
-        let syllable = '';
-        if (!startWithVowel) syllable += this.getRandomGrapheme(syllableType.first, false)
-        syllable += this.getRandomGrapheme(syllableType.first, true)
-        if (useConsonantSuffix) syllable += this.getRandomGrapheme(syllableType.first, false)
-
-        return syllable;
-    }
-
-    private static getMiddleSyllable() {
-        const useConsonantPrefix = Math.random() < Human.useConsonantPrefixProbability;
-        const useConsonantSuffix = Math.random() < Human.useConsonantSuffixProbability;
-
-        let syllable = '';
-        if (useConsonantPrefix) syllable += this.getRandomGrapheme(syllableType.middle, false)
-        syllable += this.getRandomGrapheme(syllableType.middle, true)
-        if (useConsonantSuffix) syllable += this.getRandomGrapheme(syllableType.middle, false)
-
-        return syllable;
-    }
-
-    private static getLastSyllable() {
-        const useConsonantPrefix = Math.random() < Human.useConsonantPrefixProbability;
-        let endWithVowel = Math.random() < Human.endWithVowelProbability;
-
-        let syllable = '';
-        if (useConsonantPrefix) syllable += this.getRandomGrapheme(syllableType.last, false)
-        syllable += this.getRandomGrapheme(syllableType.last, true)
-        if (!endWithVowel) syllable += this.getRandomGrapheme(syllableType.last, false)
-
-        return syllable;
-    }
-
-    private static getSyllableType(index, totalLength): syllableType {
-        switch (index) {
-            case 0: return syllableType.first
-            case totalLength - 1: return syllableType.last;
-            default: return syllableType.middle;
-        }
-    }
-
-
-    // Graphemes //////////////////////////////////////////////////////////////////////////////////////////////////
-
-    private static getRandomGrapheme(type: syllableType, vowel: boolean = true) {
-        let grapheme = Human.graphemes.filter(grapheme => {
-            return grapheme.isVowel == vowel;
-        });
-
-        let optionsArray = grapheme.reduce((accumulator, grapheme) => {
-            let weight = this.getWeight(type, grapheme);
-            for (let i = 0; i < weight; i++) {
-                accumulator.push(grapheme.characters);
-            }
-            return accumulator;
-        }, [])
-
-        let index = Utility.getRandomInt(0, optionsArray.length - 1);
-        let randomGrapheme = optionsArray[index];
-
-        return randomGrapheme;
-    }
-
-    private static getWeight(type: syllableType, grapheme: Grapheme) {
-        switch (type) {
-            case syllableType.first: return grapheme.beginningWeight;
-            case syllableType.middle: return grapheme.middleWeight;
-            case syllableType.last: return grapheme.endingWeight;
-        }
-    }
+  }
 }
