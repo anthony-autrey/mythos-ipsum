@@ -1,68 +1,65 @@
-import { Grapheme, syllableType } from "./interfaces";
+import { Grapheme, Ipsum, syllableType } from "./interfaces";
 import { Utility } from "./utility";
-import { Human } from "./languageConfigs/human";
 
-export class Proof {
+export class MythosIpsum {
+  private ipsum;
+
+  constructor(ipsum: Ipsum) {
+    this.ipsum = ipsum;
+  }
+
   // Words, Names //////////////////////////////////////////////////////////////////////////////////////////////////
-  public static getTranslation(sourceLanguage: string, inputText: string) {
-    let array = inputText.split(/[^a-zA-Z]/);
-    let uniqueArray = Array.from(new Set(array)).filter((word) => word);
-    let translationMap: Map<string, string> = new Map();
+  public getTranslation(sourceLanguage: string, inputText: string) {
+    let array = inputText.split(/(?=[^a-zA-Z\[\]'])/).filter((word) => word);
 
-    let firstCharacterIsUppercase = (string: string) => {
-      let firstCharacter = string[0];
-      return firstCharacter.toUpperCase() === firstCharacter;
-    };
-    let getCapitalized = (string: string) => {
-      let firstCharacter = string[0].toUpperCase();
-      return firstCharacter + string.substr(1);
-    };
+    array.forEach((word, index) => {
+      if (word.match(/[a-zA-Z]/)) {
+        let wordToReplace = word.trim();
+        let seed = (wordToReplace + sourceLanguage).toLowerCase();
+        let replaceValue = Utility.firstCharacterIsUppercase(wordToReplace)
+          ? Utility.getCapitalized(this.getWord(seed))
+          : this.getWord(seed);
 
-    uniqueArray.forEach((word) => {
-      let seed = (word + sourceLanguage).toLowerCase();
-      translationMap.set(word, Proof.getWord(seed));
+        if (word.match(/\[.*\]/))
+          replaceValue = wordToReplace.substr(1, wordToReplace.length - 2);
+        array[index] = array[index].replace(wordToReplace, replaceValue);
+      }
     });
 
-    translationMap.forEach((value, key) => {
-      let regex = new RegExp(key, "g");
-      let replaceValue = value;
-      if (firstCharacterIsUppercase(key)) value = getCapitalized(value);
+    let joinedArray = array.join("");
 
-      inputText = inputText.replace(regex, value);
-    });
-
-    return inputText;
+    return joinedArray;
   }
 
   // Words, Names //////////////////////////////////////////////////////////////////////////////////////////////////
 
-  public static getWord(seed?: string) {
+  public getWord(seed?: string) {
     let rng = Utility.getSeededRng(seed);
     let length = Utility.getRandomInt(
-      Human.wordLength.min,
-      Human.wordLength.max,
+      this.ipsum.wordLength.min,
+      this.ipsum.wordLength.max,
       rng
     );
     return this.getSyllables(length, rng);
   }
 
-  public static getFirstName(seed?: string) {
+  public getFirstName(seed?: string) {
     let rng = Utility.getSeededRng(seed);
 
     let length = Utility.getRandomInt(
-      Human.firstNameLength.min,
-      Human.firstNameLength.max,
+      this.ipsum.firstNameLength.min,
+      this.ipsum.firstNameLength.max,
       rng
     );
     return this.getSyllables(length, rng);
   }
 
-  public static getLastName(seed?: string) {
+  public getLastName(seed?: string) {
     let rng = Utility.getSeededRng(seed);
 
     let length = Utility.getRandomInt(
-      Human.lastNameLength.min,
-      Human.lastNameLength.max,
+      this.ipsum.lastNameLength.min,
+      this.ipsum.lastNameLength.max,
       rng
     );
     return this.getSyllables(length, rng);
@@ -70,7 +67,7 @@ export class Proof {
 
   // Syllables //////////////////////////////////////////////////////////////////////////////////////////////////
 
-  private static getSyllables(syllableCount: number, rng?: Function) {
+  private getSyllables(syllableCount: number, rng?: Function) {
     let syllables = "";
 
     for (let i = 0; i < syllableCount; i++) {
@@ -83,7 +80,7 @@ export class Proof {
     return syllables;
   }
 
-  private static getSyllable(type: syllableType, rng?: Function) {
+  private getSyllable(type: syllableType, rng?: Function) {
     switch (type) {
       case syllableType.first:
         return this.getFirstSyllable(rng);
@@ -94,9 +91,9 @@ export class Proof {
     }
   }
 
-  private static getFirstSyllable(rng?: Function) {
-    let startWithVowel = rng() < Human.startWithVowelProbability;
-    const useConsonantSuffix = rng() < Human.useConsonantSuffixProbability;
+  private getFirstSyllable(rng?: Function) {
+    let startWithVowel = rng() < this.ipsum.startWithVowelProbability;
+    const useConsonantSuffix = rng() < this.ipsum.useConsonantSuffixProbability;
 
     let syllable = "";
     if (!startWithVowel)
@@ -108,9 +105,9 @@ export class Proof {
     return syllable;
   }
 
-  private static getMiddleSyllable(rng?: Function) {
-    const useConsonantPrefix = rng() < Human.useConsonantPrefixProbability;
-    const useConsonantSuffix = rng() < Human.useConsonantSuffixProbability;
+  private getMiddleSyllable(rng?: Function) {
+    const useConsonantPrefix = rng() < this.ipsum.useConsonantPrefixProbability;
+    const useConsonantSuffix = rng() < this.ipsum.useConsonantSuffixProbability;
 
     let syllable = "";
     if (useConsonantPrefix)
@@ -122,9 +119,9 @@ export class Proof {
     return syllable;
   }
 
-  private static getLastSyllable(rng?: Function) {
-    const useConsonantPrefix = rng() < Human.useConsonantPrefixProbability;
-    let endWithVowel = rng() < Human.endWithVowelProbability;
+  private getLastSyllable(rng?: Function) {
+    const useConsonantPrefix = rng() < this.ipsum.useConsonantPrefixProbability;
+    let endWithVowel = rng() < this.ipsum.endWithVowelProbability;
 
     let syllable = "";
     if (useConsonantPrefix)
@@ -136,10 +133,7 @@ export class Proof {
     return syllable;
   }
 
-  private static getSyllableType(
-    index: number,
-    totalLength: number
-  ): syllableType {
+  private getSyllableType(index: number, totalLength: number): syllableType {
     switch (index) {
       case 0:
         return syllableType.first;
@@ -152,12 +146,12 @@ export class Proof {
 
   // Graphemes //////////////////////////////////////////////////////////////////////////////////////////////////
 
-  private static getRandomGrapheme(
+  private getRandomGrapheme(
     type: syllableType,
     vowel: boolean = true,
     rng?: Function
   ) {
-    let grapheme = Human.graphemes.filter((grapheme) => {
+    let grapheme = this.ipsum.graphemes.filter((grapheme) => {
       return grapheme.isVowel == vowel;
     });
 
@@ -175,7 +169,7 @@ export class Proof {
     return randomGrapheme;
   }
 
-  private static getWeight(type: syllableType, grapheme: Grapheme) {
+  private getWeight(type: syllableType, grapheme: Grapheme) {
     switch (type) {
       case syllableType.first:
         return grapheme.beginningWeight;

@@ -3,12 +3,14 @@
     "version": "1.0.7",
     "description": "Generates random fantasy words, names, sentences, paragraphs, and even UUIDs.",
     "main": "mythos-ipsum.js",
+    "types": "dist",
     "files": [
         "mythos-ipsum.js",
         "types.d.ts"
     ],
     "scripts": {
-        "start": "nodemon --exec ts-node Refactor/main.ts",
+        "start": "nodemon --exec ts-node main.ts",
+        "build": "rm -rf dist && tsc",
         "patch": "npm version patch && npm publish && git push --tags"
     },
     "author": "Anthony Autrey",

@@ -1,3 +1,0 @@
-// 1. Proof of Concept with new schema
-2. Create library
-3. Build Backend
